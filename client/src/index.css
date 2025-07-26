@@ -1,0 +1,209 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(60, 4.8%, 95.9%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(119, 62%, 50%);
+  --accent-foreground: hsl(60, 9.1%, 97.8%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
+  --radius: 0.5rem;
+  
+  /* Custom productivity app colors */
+  --success: hsl(142, 76%, 36%);
+  --warning: hsl(38, 92%, 50%);
+  --info: hsl(217, 91%, 60%);
+  --purple: hsl(271, 81%, 56%);
+  --orange: hsl(25, 95%, 53%);
+  --pink: hsl(330, 81%, 60%);
+  --indigo: hsl(231, 48%, 48%);
+  --teal: hsl(173, 58%, 39%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(119, 62%, 50%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+  
+  /* Dark mode custom colors */
+  --success: hsl(142, 76%, 36%);
+  --warning: hsl(38, 92%, 50%);
+  --info: hsl(217, 91%, 60%);
+  --purple: hsl(271, 81%, 56%);
+  --orange: hsl(25, 95%, 53%);
+  --pink: hsl(330, 81%, 60%);
+  --indigo: hsl(231, 48%, 48%);
+  --teal: hsl(173, 58%, 39%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .timer-circle {
+    transform-origin: center;
+    transform: rotate(-90deg);
+  }
+  
+  .timer-progress {
+    transition: stroke-dashoffset 1s ease-in-out;
+  }
+  
+  .habit-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.25rem;
+  }
+  
+  .habit-day {
+    aspect-ratio: 1;
+    border-radius: 0.25rem;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .habit-day.completed {
+    background-color: var(--accent);
+  }
+  
+  .habit-day.incomplete {
+    background-color: var(--muted);
+  }
+  
+  .chart-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .water-glass {
+    background: linear-gradient(to top, hsl(217, 91%, 60%) 0%, transparent 100%);
+    border: 2px solid hsl(217, 91%, 60%);
+    border-radius: 0 0 0.5rem 0.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .water-level {
+    background: linear-gradient(to top, hsl(217, 91%, 60%) 0%, hsl(217, 91%, 70%) 100%);
+    transition: height 0.3s ease-in-out;
+    border-radius: 0 0 0.5rem 0.5rem;
+  }
+  
+  .note-editor {
+    min-height: 400px;
+    resize: vertical;
+  }
+  
+  .note-editor .ProseMirror {
+    outline: none;
+    padding: 1rem;
+    min-height: 350px;
+  }
+  
+  .productivity-gradient {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  }
+  
+  .glass-effect {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .dark .glass-effect {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .score-ring {
+    stroke-linecap: round;
+    transform: rotate(-90deg);
+    transform-origin: center;
+  }
+  
+  .animate-draw {
+    animation: draw 2s ease-in-out forwards;
+  }
+  
+  @keyframes draw {
+    from {
+      stroke-dashoffset: 100;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background;
+  }
+  
+  .btn-gradient {
+    background: linear-gradient(135deg, var(--primary) 0%, hsl(207, 90%, 60%) 100%);
+  }
+  
+  .btn-gradient:hover {
+    background: linear-gradient(135deg, hsl(207, 90%, 50%) 0%, hsl(207, 90%, 55%) 100%);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .bg-custom-gradient {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  }
+  
+  .shadow-custom {
+    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .dark .shadow-custom {
+    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  }
+  
+  .border-gradient {
+    border-image: linear-gradient(135deg, var(--primary), var(--accent)) 1;
+  }
+}
